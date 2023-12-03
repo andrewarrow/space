@@ -15,5 +15,6 @@ func RegisterEvents() {
 
 func login(this js.Value, p []js.Value) any {
 	fmt.Println("login")
+	Global.Location.Set("href", "/space")
 	return nil
 }
