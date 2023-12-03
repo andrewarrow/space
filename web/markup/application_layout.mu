@@ -1,9 +1,8 @@
 html attr-1
   head
+    script src=https://cdn.tailwindcss.com
     title
       {{ index . "title" }}
-    script src=https://cdn.tailwindcss.com
-    link rel=stylesheet type=text/css href=/assets/css/tail.min.css
   body
     div id=flash bg-red-600 text-white text-center
       {{ index . "flash" }}
