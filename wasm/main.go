@@ -9,13 +9,11 @@ import (
 	"github.com/andrewarrow/feedback/wasm"
 )
 
-var g *wasm.Global
-
 func main() {
 	rand.Seed(time.Now().UnixNano())
 	fmt.Println("Go Web Assembly")
-	g = wasm.NewGlobal()
-	app.RegisterEvents(g)
+	app.Global = wasm.NewGlobal()
+	app.RegisterEvents()
 
 	select {}
 }
