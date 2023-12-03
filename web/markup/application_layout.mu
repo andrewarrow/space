@@ -1,6 +1,7 @@
 html attr-1
   head
     script src=https://cdn.tailwindcss.com
+    script src=/assets/javascript/wasm_exec.js
     title
       {{ index . "title" }}
   body
@@ -8,3 +9,4 @@ html attr-1
       {{ index . "flash" }}
     div bg-r overflow-x-auto pl-20 pr-20
       {{ index . "content" }}
+    {{ index . "wasm" }}
