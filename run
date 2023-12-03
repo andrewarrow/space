@@ -8,4 +8,4 @@ cd ../../
 DATABASE_URL=postgres://fred3:fred3@localhost/plot2?sslmode=disable
 uuid=$(uuidgen); go build -ldflags="-X main.buildTag=$uuid" -o space-web
 echo "3"
-./web run 3000
+./space-web run 3000
