@@ -37,6 +37,7 @@ func main() {
 		r := router.NewRouter("DATABASE_URL", embeddedFile)
 		r.Paths["/"] = app.HandleWelcome
 		r.Paths["space"] = app.HandleSpace
+		r.Paths["login"] = app.Login
 		//r.Paths["sessions"] = app.HandleSessions
 		//r.Paths["users"] = app.HandleUsers
 		r.ListenAndServe(":" + os.Args[2])
