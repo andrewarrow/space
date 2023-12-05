@@ -19,7 +19,7 @@ func login(this js.Value, p []js.Value) any {
 }
 
 func loginForm(this js.Value, p []js.Value) any {
-	this.Call("preventDefault")
+	p[0].Call("preventDefault")
 	//Global.Location.Set("href", "/space")
-	return nil
+	return false
 }
