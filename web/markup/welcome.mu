@@ -15,3 +15,8 @@ div p-3 text-4xl pb-64
           input w-64 type=text id=username autofocus=true required=true placeholder=username
         div
           input w-64 type=password id=password required=true placeholder=password
+        div
+          input w-64 type=submit value=Go border rounded bg-blue-600 text-white py-2 px-2
+        div text-2xl text-center
+          a href=/ underline
+            Forgot Password
