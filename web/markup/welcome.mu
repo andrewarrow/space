@@ -8,7 +8,7 @@ div p-3 text-4xl pb-64
     div
       button id=register whitespace-nowrap border rounded bg-blue-600 text-white py-2 px-2
         Sign Up
-  form py-9
+  form py-9 id=login-form method=POST
     div flex justify-center
       div space-y-9
         div 
