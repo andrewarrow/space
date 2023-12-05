@@ -2,11 +2,9 @@ package network
 
 import (
 	"bytes"
-	"compress/gzip"
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -14,20 +12,14 @@ import (
 func DoHttpRead(request *http.Request) (string, int) {
 	client := &http.Client{Timeout: time.Second * 5}
 	request.Header.Set("Content-Type", "application/json")
+	//request.Header.Set("Accept-Encoding", "application/json")
 	resp, err := client.Do(request)
 	if err == nil {
-		ce := resp.Header.Get("Content-Encoding")
 		defer resp.Body.Close()
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			fmt.Printf("\n\nERROR: %d %s\n\n", resp.StatusCode, err.Error())
 			return err.Error(), 500
-		}
-		if ce == "gzip" {
-			buf := bytes.NewBuffer(body)
-			gr, _ := gzip.NewReader(buf)
-			defer gr.Close()
-			body, _ = ioutil.ReadAll(gr)
 		}
 		return string(body), resp.StatusCode
 	}
@@ -43,6 +35,7 @@ func DoPost(urlString string, payload any) int {
 		return 500
 	}
 
-	_, code := DoHttpRead(request)
+	jsonString, code := DoHttpRead(request)
+	fmt.Println(jsonString)
 	return code
 }

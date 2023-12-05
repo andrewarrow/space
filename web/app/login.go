@@ -11,4 +11,7 @@ func Login(c *router.Context, second, third string) {
 }
 
 func handleLogin(c *router.Context) {
+	row := map[string]any{}
+	row["send"] = 123
+	c.SendContentAsJson(row, 200)
 }
