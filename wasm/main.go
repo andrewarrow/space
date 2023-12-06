@@ -12,7 +12,7 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 	fmt.Println("Go Web Assembly")
-	app.Global = wasm.NewGlobal()
+	app.Global, app.Document = wasm.NewGlobal()
 	app.RegisterEvents()
 
 	select {}
