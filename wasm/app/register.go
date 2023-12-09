@@ -9,7 +9,7 @@ func RegisterEvents() {
 	if Global.Start == "welcome" {
 		RegisterLoginEvents()
 	} else if Global.Start == "space" {
-		//RegisterSpaceEvents()
+		RegisterSpaceEvents()
 	} else if Global.Start == "profile" {
 		//RegisterProfileEvents()
 	}
