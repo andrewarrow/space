@@ -15,6 +15,7 @@ func createTicket(this js.Value, params []js.Value) any {
 	params[0].Call("preventDefault")
 	div := Document.ById("modal")
 	wasm.RemoveClass(div, "hidden")
+	Document.ById("title").Call("focus")
 	return nil
 }
 
