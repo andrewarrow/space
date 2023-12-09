@@ -38,6 +38,7 @@ func main() {
 		r.Paths["/"] = app.HandleWelcome
 		r.Paths["space"] = app.HandleSpace
 		r.Paths["login"] = app.Login
+		r.Paths["register"] = app.Register
 		//r.Paths["sessions"] = app.HandleSessions
 		//r.Paths["users"] = app.HandleUsers
 		r.ListenAndServe(":" + os.Args[2])

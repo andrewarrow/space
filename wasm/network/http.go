@@ -27,6 +27,28 @@ func DoHttpRead(request *http.Request) (string, int) {
 	return err.Error(), 500
 }
 
+func DoGet(urlString string) string {
+	request, err := http.NewRequest("GET", urlString, nil)
+	if err != nil {
+		return ""
+	}
+
+	jsonString, _ := DoHttpRead(request)
+	return jsonString
+}
+
+func DoPatch(urlString string, payload any) int {
+	asBytes, _ := json.Marshal(payload)
+	body := bytes.NewBuffer(asBytes)
+	request, err := http.NewRequest("PATCH", urlString, body)
+	if err != nil {
+		return 500
+	}
+
+	_, code := DoHttpRead(request)
+	return code
+}
+
 func DoPost(urlString string, payload any) int {
 	asBytes, _ := json.Marshal(payload)
 	body := bytes.NewBuffer(asBytes)
@@ -35,7 +57,16 @@ func DoPost(urlString string, payload any) int {
 		return 500
 	}
 
-	jsonString, code := DoHttpRead(request)
-	fmt.Println(jsonString)
+	_, code := DoHttpRead(request)
+	return code
+}
+
+func DoDelete(urlString string) int {
+	request, err := http.NewRequest("DELETE", urlString, nil)
+	if err != nil {
+		return 500
+	}
+
+	_, code := DoHttpRead(request)
 	return code
 }

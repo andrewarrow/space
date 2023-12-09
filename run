@@ -1,11 +1,22 @@
 cd wasm
-GOOS=js GOARCH=wasm go build -ldflags="-s -w -X main.useLive=true" -o ../web/assets/other/json.wasm 
+files=(../web/views/*)
+file_string=""
+for ((i=0; i<${#files[@]}; i++)); do
+    filename=$(basename "${files[$i]}")
+    if [ -z "$file_string" ]; then
+        file_string="$filename"
+    else
+        file_string="$file_string,$filename"
+    fi
+done
+cp ../web/views/* views
+GOOS=js GOARCH=wasm go build -ldflags="-s -w -X main.useLive=true -X main.viewList=$file_string" -o ../web/assets/other/json.wasm 
 cd ../web/assets/other
 rm json.wasm.gz
 gzip json.wasm
 cd ../../
-#tailwindcss -i assets/css/tail.components.css -o assets/css/tail.min.css --minify
-DATABASE_URL=postgres://fred3:fred3@localhost/plot2?sslmode=disable
+tailwindcss -i assets/css/tail.components.css -o assets/css/tail.min.css --minify
+DATABASE_URL=postgres://fred3:fred3@localhost/linkscopic?sslmode=disable
 uuid=$(uuidgen); go build -ldflags="-X main.buildTag=$uuid" -o space-web
 echo "3"
 ./space-web run 3000

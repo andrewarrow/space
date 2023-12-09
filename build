@@ -1,0 +1,11 @@
+cd wasm
+GOOS=js GOARCH=wasm go build -ldflags="-s -w -X main.useLive=false" -o ../web/assets/other/json.wasm 
+cd ../web/assets/other
+rm json.wasm.gz
+gzip json.wasm
+cd ../../
+tailwindcss -i assets/css/tail.components.css -o assets/css/tail.min.css --minify
+DATABASE_URL=postgres://fred3:fred3@localhost/linkscopic?sslmode=disable
+uuid=$(uuidgen); GOOS=linux GOARCH=amd64 go build -ldflags="-X main.buildTag=$uuid" -o space-web
+echo "3"
+cp space-web ~/os/devops/web/web
