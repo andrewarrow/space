@@ -3,7 +3,6 @@ package app
 import (
 	"fmt"
 	"html/template"
-	"time"
 
 	"github.com/andrewarrow/feedback/router"
 )
@@ -18,7 +17,7 @@ func HandleWelcome(c *router.Context, second, third string) {
 
 func handleWelcomeIndex(c *router.Context) {
 	send := map[string]any{}
-	c.LayoutMap["wasm"] = makeWasmScript()
+	c.LayoutMap["wasm"] = makeWasmScript("welcome")
 	c.SendContentInLayout("welcome.html", send, 200)
 }
 
@@ -27,15 +26,16 @@ func makeScript(s string) template.HTML {
 	return template.HTML(fmt.Sprintf(script, s))
 }
 
-func makeWasmScript() template.HTML {
-	t := fmt.Sprintf(wasmScript, time.Now().Unix())
+func makeWasmScript(s string) template.HTML {
+	BuildTag := router.BuildTag
+	t := fmt.Sprintf(wasmScript, BuildTag, s)
 	return makeScript(t)
 }
 
 var wasmScript = `document.addEventListener("DOMContentLoaded", function() {
             const go = new Go();
-  WebAssembly.instantiateStreaming(fetch("/assets/other/json.wasm.gz?ran=%d"), go.importObject).then((result) => {
+  WebAssembly.instantiateStreaming(fetch("/assets/other/json.wasm.gz?id=%s"), go.importObject).then((result) => {
                 go.run(result.instance);
-                WasmReady('test');
+                WasmReady('%s');
             });
 });`
