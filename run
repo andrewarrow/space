@@ -16,7 +16,7 @@ rm json.wasm.gz
 gzip json.wasm
 cd ../../
 tailwindcss -i assets/css/tail.components.css -o assets/css/tail.min.css --minify
-DATABASE_URL=postgres://fred3:fred3@localhost/linkscopic?sslmode=disable
+DATABASE_URL=postgres://fred3:fred3@localhost/space?sslmode=disable
 uuid=$(uuidgen); go build -ldflags="-X main.buildTag=$uuid" -o space-web
 echo "3"
 ./space-web run 3000

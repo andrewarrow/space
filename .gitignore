@@ -3,3 +3,7 @@ space-web
 go.sum
 web/views
 .DS_Store
+env.sh
+data
+wasm/views
+web/assets/css/tail.min.css
