@@ -76,17 +76,15 @@
       ]
     },
     {
-      "name": "zip_location",
+      "name": "ticket",
       "fields": [
         {
-          "name": "zip",
-          "flavor": "int",
-          "index": "unique"
+          "name": "title",
+          "flavor": "name"
         },
         {
-          "name": "location",
-          "flavor": "geometry",
-          "null": "yes"
+          "name": "description",
+          "flavor": "text"
         }
       ]
     },
