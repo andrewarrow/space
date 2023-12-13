@@ -16,6 +16,10 @@ func HandleWelcome(c *router.Context, second, third string) {
 }
 
 func handleWelcomeIndex(c *router.Context) {
+	if len(c.User) > 0 {
+		handleSpaceIndex(c)
+		return
+	}
 	send := map[string]any{}
 	c.LayoutMap["wasm"] = makeWasmScript("welcome")
 	c.SendContentInLayout("welcome.html", send, 200)
