@@ -39,7 +39,7 @@ func main() {
 		r.Paths["space"] = app.HandleSpace
 		r.Paths["login"] = app.Login
 		r.Paths["register"] = app.Register
-		r.Paths["ticket"] = app.Ticket
+		r.Paths["tickets"] = app.Ticket
 		r.Paths["markup"] = app.Markup
 		r.ListenAndServe(":" + os.Args[2])
 	} else if arg == "help" {
