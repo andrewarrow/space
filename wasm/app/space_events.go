@@ -7,15 +7,16 @@ import (
 )
 
 func RegisterSpaceEvents() {
-	Global.Click("create", createTicket)
+	Global.Click("create", showCreateTicket)
 	Global.Click("x", clickX)
 }
 
-func createTicket(this js.Value, params []js.Value) any {
+func showCreateTicket(this js.Value, params []js.Value) any {
 	params[0].Call("preventDefault")
 	div := Document.ById("modal")
 	wasm.RemoveClass(div, "hidden")
 	Document.ById("title").Call("focus")
+	Global.Submit("ticket-form", createTicket)
 	return nil
 }
 
