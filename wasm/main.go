@@ -18,8 +18,6 @@ var useLive string
 var viewList string
 
 func main() {
-	fmt.Println("1")
-	fmt.Println(viewList)
 	wasm.UseLive = useLive == "true"
 	wasm.EmbeddedTemplates = embeddedTemplates
 	rand.Seed(time.Now().UnixNano())
