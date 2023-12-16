@@ -12,5 +12,5 @@ div p-3 text-2xl min-h-screen w-full bg-r
     div text-right mr-3
       a href=# id=x
         X
-    div id=modal-content
+    div id=modal-content p-3
       modal

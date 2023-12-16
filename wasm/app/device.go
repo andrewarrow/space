@@ -15,7 +15,7 @@ func NewDevice(id string) *Device {
 }
 
 func (d *Device) Click(this js.Value, params []js.Value) any {
-	Document.ById("modal-content").Set("innerHTML", d.Id)
+	Document.RenderToId("modal-content", "device_show", nil)
 	Document.ByIdWrap("modal").Show()
 	return nil
 }

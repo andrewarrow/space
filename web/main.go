@@ -29,7 +29,8 @@ func main() {
 	}
 	arg := os.Args[1]
 
-	if arg == "reset" {
+	if arg == "render" {
+		router.RenderMarkup()
 	} else if arg == "run" {
 		router.BuildTag = buildTag
 		router.EmbeddedTemplates = embeddedTemplates
