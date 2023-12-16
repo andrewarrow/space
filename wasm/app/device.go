@@ -44,7 +44,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 		val["flavor"] = "house_blend"
 		val["intensity"] = 11
 		m["values"] = val
-		m["commands"] = []string{"list_flavors", ""}
+		m["commands"] = []string{"list_flavors", "brew_now"}
 	} else if d.Id == "pet_feeder" {
 		m["meals_every"] = 86400
 	}
