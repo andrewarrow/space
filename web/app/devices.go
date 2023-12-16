@@ -1,15 +1,16 @@
 package app
 
 var smartHomeDevices = []string{
-	"Smart Fridge",
-	"Smart Scale",
-	"Nest Thermostat",
-	"Amazon Alexa",
-	"Smart Lighting",
-	"Ring Doorbell",
-	"Tesla",
-	"iPhone",
-	"Apple Watch",
+	"tesla",
+	"nest",
+	"ring",
+	"fridge",
+	"scale",
+	"smoke_detector",
+	"smart_mirror",
+	"smart_lock",
+	"smart_coffee",
+	"pet_feeder",
 }
 
 var smartHomeDeviceMaps = []map[string]any{{"id": 1, "name": smartHomeDevices[0]},

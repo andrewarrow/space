@@ -49,7 +49,7 @@ var FridgeJson = `{
       "message": "Low quantity of eggs. Consider restocking."
     }
   ],
-  "alerts": [
+  "alerts3": [
     {
       "type": "temperature",
       "message": "Temperature is higher than usual. Check settings."
@@ -59,7 +59,7 @@ var FridgeJson = `{
       "message": "Low quantity of eggs. Consider restocking."
     }
   ],
-  "alerts": [
+  "alerts2": [
     {
       "type": "temperature",
       "message": "Temperature is higher than usual. Check settings."
