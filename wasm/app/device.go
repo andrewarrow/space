@@ -38,7 +38,13 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 		m["front_door"] = "unlocked"
 		m["east_side_door"] = "ajar"
 	} else if d.Id == "smart_coffee" {
-		m["brew_at"] = 1702758928
+		val := map[string]any{}
+		val["brew_at"] = 1702758928
+		val["cups"] = 2
+		val["flavor"] = "house_blend"
+		val["intensity"] = 11
+		m["values"] = val
+		m["commands"] = []string{"list_flavors", ""}
 	} else if d.Id == "pet_feeder" {
 		m["meals_every"] = 86400
 	}
