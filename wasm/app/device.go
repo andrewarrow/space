@@ -16,6 +16,7 @@ func NewDevice(id string) *Device {
 
 func (d *Device) Click(this js.Value, params []js.Value) any {
 	//asString := common.FridgeJson
+	send := map[string]any{"name": d.Id}
 	m := map[string]any{}
 	//json.Unmarshal([]byte(asString), &m)
 	if d.Id == "tesla" {
@@ -41,8 +42,9 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	} else if d.Id == "pet_feeder" {
 		m["meals_every"] = 86400
 	}
+	send["data"] = m
 
-	Document.RenderToId("modal-content", "device_show", m)
+	Document.RenderToId("modal-content", "device_show", send)
 	Document.ByIdWrap("modal").Show()
 	return nil
 }

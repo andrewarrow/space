@@ -1,3 +1,6 @@
+cd web
+./space-web render
+cd ..
 cd wasm
 GOOS=js GOARCH=wasm go build -ldflags="-s -w -X main.useLive=false" -o ../web/assets/other/json.wasm 
 cd ../web/assets/other
