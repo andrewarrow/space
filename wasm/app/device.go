@@ -1,7 +1,6 @@
 package app
 
 import (
-	"fmt"
 	"syscall/js"
 )
 
@@ -16,6 +15,7 @@ func NewDevice(id string) *Device {
 }
 
 func (d *Device) Click(this js.Value, params []js.Value) any {
-	fmt.Println(d.Id)
+	Document.ById("modal-content").Set("innerHTML", d.Id)
+	Document.ByIdWrap("modal").Show()
 	return nil
 }
