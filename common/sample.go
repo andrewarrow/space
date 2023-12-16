@@ -49,6 +49,26 @@ var FridgeJson = `{
       "message": "Low quantity of eggs. Consider restocking."
     }
   ],
+  "alerts": [
+    {
+      "type": "temperature",
+      "message": "Temperature is higher than usual. Check settings."
+    },
+    {
+      "type": "inventory",
+      "message": "Low quantity of eggs. Consider restocking."
+    }
+  ],
+  "alerts": [
+    {
+      "type": "temperature",
+      "message": "Temperature is higher than usual. Check settings."
+    },
+    {
+      "type": "inventory",
+      "message": "Low quantity of eggs. Consider restocking."
+    }
+  ],
   "settings": {
     "temperatureUnit": "Celsius",
     "humidityAlertThreshold": 50
