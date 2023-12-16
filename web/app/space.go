@@ -15,6 +15,8 @@ func HandleSpace(c *router.Context, second, third string) {
 
 func handleSpaceIndex(c *router.Context) {
 	send := map[string]any{}
+	items := smartHomeDevices
+	send["items"] = items
 	c.LayoutMap["wasm"] = makeWasmScript("space")
 	c.SendContentInLayout("space.html", send, 200)
 }
