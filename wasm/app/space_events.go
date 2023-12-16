@@ -7,7 +7,11 @@ import (
 )
 
 func RegisterSpaceEvents() {
-	Global.Click("create", showCreateTicket)
+	div := Document.ByIdWrap("devices")
+	for _, input := range div.SelectAllByClass("cursor-pointer") {
+		device := NewDevice(input.Id)
+		input.Click(device.Click)
+	}
 	Global.Click("x", clickX)
 }
 
