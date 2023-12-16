@@ -24,7 +24,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	} else if d.Id == "nest" {
 		m["fahrenheit"] = 93
 	} else if d.Id == "ring" {
-		m["front_door"] = "https://some.com/image"
+		m["front_door"] = "https://i.imgur.com/GX6D5hj.png"
 	} else if d.Id == "fridge" {
 		m["eggs"] = 2
 	} else if d.Id == "scale" {
@@ -32,7 +32,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	} else if d.Id == "smoke_detector" {
 		m["alarm"] = false
 	} else if d.Id == "smart_mirror" {
-		m["background"] = "https://pleasant.com/image"
+		m["background"] = "https://i.imgur.com/fg3virE.png"
 	} else if d.Id == "smart_lock" {
 		m["back_door"] = "locked"
 		m["front_door"] = "unlocked"

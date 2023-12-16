@@ -1,5 +1,5 @@
 div p-3 
-  div py-3 text-center
+  div py-3 text-center font-bold
     {{ $name := index . "name" }}
     {{ $data := index . "data" }}
     {{ $name }}
@@ -11,4 +11,9 @@ div p-3
             {{ $k }}
           div font-mono
             {{ $v }}
+          {{ if hasImage $v }}
+            div
+              {{ $full_url_photo := $v }}
+              img src={{$full_url_photo}}
+          {{ end }}
       {{ end }}

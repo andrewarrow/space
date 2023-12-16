@@ -7,6 +7,7 @@ import (
 	"space/web/app"
 	"time"
 
+	"github.com/andrewarrow/feedback/common"
 	"github.com/andrewarrow/feedback/router"
 )
 
@@ -35,6 +36,8 @@ func main() {
 		router.BuildTag = buildTag
 		router.EmbeddedTemplates = embeddedTemplates
 		router.EmbeddedAssets = embeddedAssets
+		tf := common.TemplateFunctions()
+		router.CustomFuncMap = &tf
 		r := router.NewRouter("DATABASE_URL", embeddedFile)
 		r.Paths["/"] = app.HandleWelcome
 		r.Paths["space"] = app.HandleSpace
