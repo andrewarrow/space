@@ -12,6 +12,6 @@ html attr-1
   body
     div id=flash bg-red-600 text-white text-center fixed top-0 left-0 w-full
       {{ index . "flash" }}
-    div bg-blue-100 overflow-x-auto pl-20 pr-20
+    div bg-blue-100 overflow-x-auto pl-3 pr-3 w-full
       {{ index . "content" }}
     {{ index . "wasm" }}
