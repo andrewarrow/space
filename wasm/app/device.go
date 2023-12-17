@@ -14,6 +14,14 @@ func NewDevice(id string) *Device {
 	return &d
 }
 
+func SetDeviceClicks() {
+	div := Document.ByIdWrap("devices")
+	for _, input := range div.SelectAllByClass("cursor-pointer") {
+		device := NewDevice(input.Id)
+		input.Click(device.Click)
+	}
+}
+
 func (d *Device) Click(this js.Value, params []js.Value) any {
 	//asString := common.FridgeJson
 	send := map[string]any{"name": d.Id}

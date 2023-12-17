@@ -32,9 +32,10 @@ func clickBack(this js.Value, params []js.Value) any {
 		div := Document.ById("modal")
 		wasm.AddClass(div, "hidden")
 	} else {
-		last := Global.Stack[len(Global.Stack)-1]
+		si := Global.Stack[len(Global.Stack)-1]
 		mc := Document.ById("modal-content")
-		mc.Set("innerHTML", last)
+		mc.Set("innerHTML", si.HTML)
+		si.Callback()
 		Global.Stack = Global.Stack[0 : len(Global.Stack)-1]
 	}
 	return nil
