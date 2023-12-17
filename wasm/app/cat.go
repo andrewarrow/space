@@ -21,10 +21,6 @@ func (d *Cat) Click(this js.Value, params []js.Value) any {
 	mc.Set("innerHTML", newHTML)
 	SetDeviceClicks()
 
-	si := NewStackItem(newHTML)
-	si.Callback = SetDeviceClicks
-	Global.Stack = append(Global.Stack, si)
-
 	Document.ByIdWrap("modal").Show()
 	return nil
 }

@@ -2,6 +2,8 @@ package app
 
 import (
 	"syscall/js"
+
+	"github.com/andrewarrow/feedback/wasm"
 )
 
 type Device struct {
@@ -90,7 +92,14 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	}
 	send["data"] = m
 
-	Document.RenderToId("modal-content", "device_show", send)
+	mc := Document.ByIdWrap("modal-content")
+	si := wasm.NewStackItem(mc.Get("innerHTML"))
+	si.Callback = SetDeviceClicks
+	Global.Stack = append(Global.Stack, si)
+
+	newHTML := Document.Render("device_show", send)
+	mc.Set("innerHTML", newHTML)
+
 	Document.ByIdWrap("modal").Show()
 	return nil
 }

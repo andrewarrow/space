@@ -35,7 +35,9 @@ func clickBack(this js.Value, params []js.Value) any {
 		si := Global.Stack[len(Global.Stack)-1]
 		mc := Document.ById("modal-content")
 		mc.Set("innerHTML", si.HTML)
-		si.Callback()
+		if si.Callback != nil {
+			si.Callback()
+		}
 		Global.Stack = Global.Stack[0 : len(Global.Stack)-1]
 	}
 	return nil
