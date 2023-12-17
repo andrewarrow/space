@@ -4,6 +4,14 @@
       {{ $guid := index $item "guid" }}
       {{ $name := index $item "name" }}
       div id=d{{$guid}} cursor-pointer border-2 border-black w-full md:w-1/2 text-center
-        {{ $name }}
+        div
+          {{ $name }}
+        div flex items-center justify-center
+          div pl-3
+            data
+          div w-full 
+            31 days ago
+          div ml-auto pr-3
+            category
     {{ end }}
   {{ end }}
