@@ -10,6 +10,10 @@ func Devices(c *router.Context, second, third string) {
 		devicesByCat(c, second)
 		return
 	}
+	if second != "" && third == "" && c.Method == "PATCH" {
+		devicePatch(c, second)
+		return
+	}
 	c.NotFound = true
 }
 
@@ -17,6 +21,13 @@ func devicesByCat(c *router.Context, cat string) {
 	send := map[string]any{}
 	items := c.All("device", "where cat=$1 order by name", "", cat)
 	send["items"] = items
+	c.SendContentAsJson(send, 200)
+}
+
+func devicePatch(c *router.Context, id string) {
+	c.ReadJsonBodyIntoParams()
+	c.Update("device", "where id=", id)
+	send := map[string]any{}
 	c.SendContentAsJson(send, 200)
 }
 

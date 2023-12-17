@@ -38,6 +38,11 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	send["cats"] = tokens
 	newHTML := Document.Render("device_show", send)
 	mc.Set("innerHTML", newHTML)
+	div := Document.ByIdWrap("device-cats")
+	for _, input := range div.SelectAllByClass("cursor-pointer") {
+		cat := NewCatPatch(d.Id, input.Id)
+		input.Click(cat.Click)
+	}
 	return nil
 }
 
