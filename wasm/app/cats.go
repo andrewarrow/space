@@ -14,6 +14,7 @@ func queryForCategories() {
 	countMap := m["cat_map"].(map[string]any)
 	Document.ById("total").Set("innerHTML", m["total"])
 	div := Document.ByIdWrap("cats")
+	div.Set("innerHTML", "")
 	cats := []string{}
 	for _, cat := range m["cats"].([]any) {
 		catMap := map[string]any{}
