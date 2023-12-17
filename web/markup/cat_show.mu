@@ -5,7 +5,7 @@
       {{ $name := index $item "name" }}
       {{ $ago := index $item "last_connection_at_ago" }}
       div a1 border-2 border-black w-full md:w-1/2 text-center id=w{{$guid}}
-        div 
+        div id=n{{$guid}} 
           {{ $name }}
         div a2 flex items-center justify-center
           div pl-3 data-click cursor-pointer id=d{{$guid}}
