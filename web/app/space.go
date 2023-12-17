@@ -1,6 +1,8 @@
 package app
 
-import "github.com/andrewarrow/feedback/router"
+import (
+	"github.com/andrewarrow/feedback/router"
+)
 
 func HandleSpace(c *router.Context, second, third string) {
 	if router.NotLoggedIn(c) {
@@ -15,7 +17,6 @@ func HandleSpace(c *router.Context, second, third string) {
 
 func handleSpaceIndex(c *router.Context) {
 	send := map[string]any{}
-	send["items"] = cats
 	c.LayoutMap["wasm"] = makeWasmScript("space")
 	c.SendContentInLayout("space.html", send, 200)
 }

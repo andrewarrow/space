@@ -44,6 +44,8 @@ func main() {
 		r.Paths["login"] = app.Login
 		r.Paths["register"] = app.Register
 		r.Paths["tickets"] = app.Ticket
+		r.Paths["devices"] = app.Devices
+		r.Paths["cats"] = app.Cats
 		r.Paths["markup"] = app.Markup
 		r.ListenAndServe(":" + os.Args[2])
 	} else if arg == "help" {

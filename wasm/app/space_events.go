@@ -7,11 +7,7 @@ import (
 )
 
 func RegisterSpaceEvents() {
-	div := Document.ByIdWrap("cats")
-	for _, input := range div.SelectAllByClass("cursor-pointer") {
-		cat := NewCat(input.Id)
-		input.Click(cat.Click)
-	}
+	go queryForCategories()
 	Global.Click("back", clickBack)
 }
 

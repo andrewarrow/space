@@ -1,5 +1,34 @@
 package app
 
+import "github.com/andrewarrow/feedback/router"
+
+func Devices(c *router.Context, second, third string) {
+	if router.NotLoggedIn(c) {
+		return
+	}
+	if second == "" && third == "" && c.Method == "GET" {
+		devices(c)
+		return
+	}
+	c.NotFound = true
+}
+
+func devices(c *router.Context) {
+	send := map[string]any{}
+	catMap := map[string]int{}
+	items := c.All("device", "order by id", "")
+	total := 0
+	for _, item := range items {
+		cat := item["cat"].(string)
+		catMap[cat]++
+		total++
+	}
+	send["cats"] = cats
+	send["cat_map"] = catMap
+	send["total"] = total
+	c.SendContentAsJson(send, 200)
+}
+
 var fridgeJson = `{
   "fridgeId": "SFR123456",
   "model": "SmartFreeze 9000",
