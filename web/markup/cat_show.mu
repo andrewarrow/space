@@ -3,15 +3,15 @@
     {{ range $i, $item := . }}
       {{ $guid := index $item "guid" }}
       {{ $name := index $item "name" }}
-      div id=d{{$guid}} cursor-pointer border-2 border-black w-full md:w-1/2 text-center
+      div border-2 border-black w-full md:w-1/2 text-center
         div
           {{ $name }}
         div flex items-center justify-center
-          div pl-3
+          div pl-3 data-click cursor-pointer id=d{{$guid}}
             data
           div w-full text-xs
             31 days ago
-          div ml-auto pr-3
+          div ml-auto pr-3 cat-click cursor-pointer id=c{{$guid}}
             category
     {{ end }}
   {{ end }}
