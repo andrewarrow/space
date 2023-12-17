@@ -9,7 +9,7 @@ div p-0 h-full overflow-y-auto bg-r w-full flex justify-center items-center
       {{ range $i, $item := $items }}
       {{ template "device" $item }}
       {{ end }}
-  div fixed top-0 left-0 h-full hidden id=modal w-full overflow-y-auto
+  div fixed top-0 left-1/2 transform -translate-x-1/2 h-full hidden id=modal w-full md:w-1/2 overflow-y-auto
     div flex justify-left items-center p-6 w-full bg-blue-300
       div w-full bg-red-600
         a href=# id=x
