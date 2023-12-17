@@ -83,6 +83,10 @@
           "flavor": "name"
         },
         {
+          "name": "last_connection_at",
+          "flavor": "timestamp"
+        },
+        {
           "name": "cat",
           "flavor": "name"
         }
