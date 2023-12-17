@@ -9,7 +9,7 @@
         div flex items-center justify-center
           div pl-3
             data
-          div w-full 
+          div w-full text-xs
             31 days ago
           div ml-auto pr-3
             category
