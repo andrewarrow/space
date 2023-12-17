@@ -23,7 +23,7 @@ func devices(c *router.Context) {
 		catMap[cat]++
 		total++
 	}
-	send["cats"] = cats
+	send["cats"] = catList
 	send["cat_map"] = catMap
 	send["total"] = total
 	c.SendContentAsJson(send, 200)

@@ -2,7 +2,7 @@ package app
 
 import "github.com/andrewarrow/feedback/router"
 
-var cats = []string{"gaming", "vehicles", "phones",
+var catList = []string{"gaming", "vehicles", "phones",
 	"tablets", "laptops", "household", "music", "video", "assistants", "other"}
 
 func Cats(c *router.Context, second, third string) {
@@ -26,7 +26,7 @@ func cats(c *router.Context) {
 		catMap[cat]++
 		total++
 	}
-	send["cats"] = cats
+	send["cats"] = catList
 	send["cat_map"] = catMap
 	send["total"] = total
 	c.SendContentAsJson(send, 200)
