@@ -26,7 +26,7 @@ func devicesByCat(c *router.Context, cat string) {
 
 func devicePatch(c *router.Context, id string) {
 	c.ReadJsonBodyIntoParams()
-	c.Update("device", "where id=", id)
+	c.Update("device", "where guid=", id)
 	send := map[string]any{}
 	c.SendContentAsJson(send, 200)
 }

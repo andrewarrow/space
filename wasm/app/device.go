@@ -8,19 +8,21 @@ import (
 )
 
 type Device struct {
-	Id string
+	Id   string
+	Name string
 }
 
-func NewDevice(id string) *Device {
+func NewDevice(id, name string) *Device {
 	d := Device{}
-	d.Id = id
+	d.Id = id[1:]
+	d.Name = name
 	return &d
 }
 
 func SetDeviceClicks() {
 	div := Document.ByIdWrap("devices")
 	for _, input := range div.SelectAllByClass("cursor-pointer") {
-		device := NewDevice(input.Id)
+		device := NewDevice(input.Id, input.Get("innerHTML"))
 		input.Click(device.Click)
 	}
 }
@@ -33,7 +35,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	Global.Stack = append(Global.Stack, si)
 
 	send := map[string]any{}
-	send["item"] = d.Id
+	send["item"] = d.Name
 	tokens := strings.Split(Global.Space["cats"], ",")
 	send["cats"] = tokens
 	newHTML := Document.Render("device_show", send)
