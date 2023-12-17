@@ -2,16 +2,12 @@ package app
 
 import (
 	"syscall/js"
-	"time"
 
 	"github.com/andrewarrow/feedback/wasm"
 )
 
 func RegisterSpaceEvents() {
-	go func() {
-		time.Sleep(time.Second * 1)
-		queryForCategories()
-	}()
+	go queryForCategories()
 	Global.Click("back", clickBack)
 }
 

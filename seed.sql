@@ -1,3 +1,5 @@
+insert into devices (name, cat, guid) values ('Living Room TV', 'other', '9901');
+insert into devices (name, cat, guid) values ('Bedroom TV', 'other', '8901');
 insert into devices (name, cat, guid) values ('Tesla 2017 Red', 'other', '0001');
 insert into devices (name, cat, guid) values ('Tesla 2019 White', 'other', '0002');
 insert into devices (name, cat, guid) values ('iBike e-Assist', 'other', '0003');

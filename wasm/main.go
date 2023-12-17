@@ -26,10 +26,13 @@ func main() {
 
 	<-app.Global.Ready
 	if wasm.UseLive {
-		go wasm.LoadAllTemplates(viewList, network.DoGet)
+		go func() {
+			wasm.LoadAllTemplates(viewList, network.DoGet)
+			app.RegisterEvents()
+		}()
+	} else {
+		app.RegisterEvents()
 	}
-
-	app.RegisterEvents()
 
 	select {}
 }

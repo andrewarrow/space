@@ -3,7 +3,7 @@ package app
 import "github.com/andrewarrow/feedback/router"
 
 var catList = []string{"gaming", "vehicles", "phones",
-	"tablets", "laptops", "household", "music", "video", "assistants", "other"}
+	"tablets", "laptops", "desktops", "household", "music", "video", "assistants", "other"}
 
 func Cats(c *router.Context, second, third string) {
 	if router.NotLoggedIn(c) {
