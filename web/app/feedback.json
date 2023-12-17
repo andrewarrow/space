@@ -76,6 +76,19 @@
       ]
     },
     {
+      "name": "device",
+      "fields": [
+        {
+          "name": "name",
+          "flavor": "name"
+        },
+        {
+          "name": "cat",
+          "flavor": "name"
+        }
+      ]
+    },
+    {
       "name": "ticket",
       "fields": [
         {
