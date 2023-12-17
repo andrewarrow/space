@@ -3,6 +3,7 @@ package app
 import (
 	"encoding/json"
 	"space/wasm/network"
+	"strings"
 )
 
 func queryForCategories() {
@@ -13,15 +14,19 @@ func queryForCategories() {
 	countMap := m["cat_map"].(map[string]any)
 	//total := m["total"]
 	div := Document.ByIdWrap("cats")
+	cats := []string{}
 	for _, cat := range m["cats"].([]any) {
 		catMap := map[string]any{}
-		catMap["name"] = cat
-		catMap["id"] = cat
-		catMap["count"] = countMap[cat.(string)]
+		catString := cat.(string)
+		catMap["name"] = catString
+		catMap["id"] = catString
+		catMap["count"] = countMap[catString]
 		newHTML := Document.Render("cat", catMap)
 		current := div.Get("innerHTML")
 		div.Set("innerHTML", current+newHTML)
+		cats = append(cats, catString)
 	}
+	Global.Space["cats"] = strings.Join(cats, ",")
 
 	for _, input := range div.SelectAllByClass("cursor-pointer") {
 		cat := NewCat(input.Id)

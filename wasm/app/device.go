@@ -1,6 +1,7 @@
 package app
 
 import (
+	"strings"
 	"syscall/js"
 
 	"github.com/andrewarrow/feedback/wasm"
@@ -25,6 +26,22 @@ func SetDeviceClicks() {
 }
 
 func (d *Device) Click(this js.Value, params []js.Value) any {
+	mc := Document.ByIdWrap("modal-content")
+	si := wasm.NewStackItem(mc.Get("innerHTML"))
+	mc.Set("innerHTML", "")
+	si.Callback = SetDeviceClicks
+	Global.Stack = append(Global.Stack, si)
+
+	send := map[string]any{}
+	send["item"] = d.Id
+	tokens := strings.Split(Global.Space["cats"], ",")
+	send["cats"] = tokens
+	newHTML := Document.Render("device_show", send)
+	mc.Set("innerHTML", newHTML)
+	return nil
+}
+
+func (d *Device) OldClick(this js.Value, params []js.Value) any {
 	//asString := common.FridgeJson
 	send := map[string]any{"name": d.Id}
 	m := map[string]any{}
