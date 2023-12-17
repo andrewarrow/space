@@ -6,26 +6,17 @@ func Devices(c *router.Context, second, third string) {
 	if router.NotLoggedIn(c) {
 		return
 	}
-	if second == "" && third == "" && c.Method == "GET" {
-		devices(c)
+	if second != "" && third == "" && c.Method == "GET" {
+		devicesByCat(c, second)
 		return
 	}
 	c.NotFound = true
 }
 
-func devices(c *router.Context) {
+func devicesByCat(c *router.Context, cat string) {
 	send := map[string]any{}
-	catMap := map[string]int{}
-	items := c.All("device", "order by id", "")
-	total := 0
-	for _, item := range items {
-		cat := item["cat"].(string)
-		catMap[cat]++
-		total++
-	}
-	send["cats"] = catList
-	send["cat_map"] = catMap
-	send["total"] = total
+	items := c.All("device", "where cat=$1 order by name", "", cat)
+	send["items"] = items
 	c.SendContentAsJson(send, 200)
 }
 

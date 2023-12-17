@@ -5,10 +5,12 @@ import (
 	"space/wasm/network"
 )
 
-func queryForDevice() {
-	jsonString := network.DoGet("/cats")
+func queryForDevices(cat string) []any {
+	jsonString := network.DoGet("/devices/" + cat)
 	var m map[string]any
 	json.Unmarshal([]byte(jsonString), &m)
+	items := m["items"].([]any)
+	return items
 
 	/*
 		for _, input := range div.SelectAllByClass("cursor-pointer") {

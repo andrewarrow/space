@@ -1,7 +1,6 @@
 package app
 
 import (
-	"space/common"
 	"syscall/js"
 )
 
@@ -17,10 +16,14 @@ func NewCat(id string) *Cat {
 
 func (d *Cat) Click(this js.Value, params []js.Value) any {
 	mc := Document.ById("modal-content")
-	newHTML := Document.Render("cat_show", common.SmartHomeDeviceMaps)
-	mc.Set("innerHTML", newHTML)
-	SetDeviceClicks()
-
+	mc.Set("innerHTML", "")
 	Document.ByIdWrap("modal").Show()
+
+	go func() {
+		items := queryForDevices(d.Id)
+		newHTML := Document.Render("cat_show", items)
+		mc.Set("innerHTML", newHTML)
+		SetDeviceClicks()
+	}()
 	return nil
 }
