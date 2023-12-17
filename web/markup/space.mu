@@ -7,7 +7,7 @@ div p-0 h-full overflow-y-auto bg-r w-full flex justify-center items-center
     div id=devices space-y-3 w-full flex flex-col justify-center items-center
       {{ $items := index . "items" }}
       {{ range $i, $item := $items }}
-      {{ template "device" $item }}
+      {{ template "cat" $item }}
       {{ end }}
   div fixed top-0 left-1/2 transform -translate-x-1/2 h-full hidden id=modal w-full md:w-1/2 overflow-y-auto
     div flex justify-left items-center p-6 w-full bg-blue-300
