@@ -12,7 +12,7 @@ func RegisterSpaceEvents() {
 		cat := NewCat(input.Id)
 		input.Click(cat.Click)
 	}
-	Global.Click("x", clickX)
+	Global.Click("back", clickBack)
 }
 
 func showCreateTicket(this js.Value, params []js.Value) any {
@@ -26,9 +26,16 @@ func showCreateTicket(this js.Value, params []js.Value) any {
 	return nil
 }
 
-func clickX(this js.Value, params []js.Value) any {
+func clickBack(this js.Value, params []js.Value) any {
 	params[0].Call("preventDefault")
-	div := Document.ById("modal")
-	wasm.AddClass(div, "hidden")
+	if len(Global.Stack) == 0 {
+		div := Document.ById("modal")
+		wasm.AddClass(div, "hidden")
+	} else {
+		last := Global.Stack[len(Global.Stack)-1]
+		mc := Document.ById("modal-content")
+		mc.Set("innerHTML", last)
+		Global.Stack = Global.Stack[0 : len(Global.Stack)-1]
+	}
 	return nil
 }

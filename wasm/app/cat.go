@@ -16,7 +16,16 @@ func NewCat(id string) *Cat {
 }
 
 func (d *Cat) Click(this js.Value, params []js.Value) any {
-	Document.RenderToId("modal-content", "cat_show", common.SmartHomeDeviceMaps)
+	mc := Document.ById("modal-content")
+	newHtml := Document.Render("cat_show", common.SmartHomeDeviceMaps)
+	mc.Set("innerHTML", newHTML)
+	Global.Stack = append(Global.Stack, newHtml)
+	div := Document.ByIdWrap("devices")
+	for _, input := range div.SelectAllByClass("cursor-pointer") {
+		device := NewDevice(input.Id)
+		input.Click(device.Click)
+	}
+
 	Document.ByIdWrap("modal").Show()
 	return nil
 }
