@@ -21,7 +21,8 @@ var smartHomeDeviceMaps = []map[string]any{{"id": 1, "name": smartHomeDevices[0]
 	{"id": 6, "name": smartHomeDevices[5]},
 	{"id": 7, "name": smartHomeDevices[6]},
 	{"id": 8, "name": smartHomeDevices[7]},
-	{"id": 9, "name": smartHomeDevices[8]}}
+	{"id": 9, "name": smartHomeDevices[8]},
+	{"id": 10, "name": smartHomeDevices[9]}}
 
 var fridgeJson = `{
   "fridgeId": "SFR123456",

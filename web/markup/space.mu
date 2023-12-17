@@ -1,5 +1,5 @@
-div p-0 h-full overflow-y-auto
-  div p-3 text-2xl min-h-screen w-full bg-r
+div p-0 h-full overflow-y-auto bg-r w-full flex justify-center items-center
+  div p-3 text-2xl min-h-screen w-full md:w-1/2 bg-r
     div py-3 text-center
       homeOS
     div text-sm text-center
@@ -9,9 +9,10 @@ div p-0 h-full overflow-y-auto
       {{ range $i, $item := $items }}
       {{ template "device" $item }}
       {{ end }}
-  div bg-r fixed top-0 left-0 w-full h-full hidden id=modal  overflow-y-auto
-    div text-right mr-9
-      a href=# id=x
-        X
-    div id=modal-content p-3 h-full  overflow-y-auto
+  div fixed top-0 left-0 h-full hidden id=modal w-full overflow-y-auto
+    div flex justify-left items-center p-6 w-full bg-blue-300
+      div w-full bg-red-600
+        a href=# id=x
+          [BACK]
+    div id=modal-content p-3 h-full  overflow-y-auto bg-white
       modal
