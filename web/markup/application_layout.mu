@@ -7,6 +7,8 @@ html attr-1
       link rel=stylesheet type=text/css href=/assets/css/tail.min.css?id!{{$build}}
     {{ end }}
     script src=/assets/javascript/wasm_exec.js
+    script
+      function $(id) { return document.getElementById(id); }
     title
       {{ index . "title" }}
   body

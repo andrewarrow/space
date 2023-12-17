@@ -3,10 +3,10 @@
     {{ range $i, $item := . }}
       {{ $guid := index $item "guid" }}
       {{ $name := index $item "name" }}
-      div border-2 border-black w-full md:w-1/2 text-center
-        div
+      div a1 border-2 border-black w-full md:w-1/2 text-center id=w{{$guid}}
+        div 
           {{ $name }}
-        div flex items-center justify-center
+        div a2 flex items-center justify-center
           div pl-3 data-click cursor-pointer id=d{{$guid}}
             data
           div w-full text-xs

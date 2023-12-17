@@ -21,7 +21,7 @@ func NewDevice(id, name string) *Device {
 
 func SetDeviceClicks() {
 	div := Document.ByIdWrap("devices")
-	for _, input := range div.SelectAllByClass("cat-clicks") {
+	for _, input := range div.SelectAll(".cat-click") {
 		device := NewDevice(input.Id, input.Get("innerHTML"))
 		input.Click(device.Click)
 	}
