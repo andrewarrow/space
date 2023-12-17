@@ -4,7 +4,7 @@ div p-0 h-full overflow-y-auto bg-r w-full flex justify-center items-center
       homeOS
     div text-sm text-center
       34 devices
-    div id=devices space-y-3 w-full flex flex-col justify-center items-center
+    div id=cats space-y-3 w-full flex flex-col justify-center items-center
       {{ $items := index . "items" }}
       {{ range $i, $item := $items }}
       {{ template "cat" $item }}
