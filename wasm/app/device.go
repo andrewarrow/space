@@ -20,23 +20,49 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	m := map[string]any{}
 	//json.Unmarshal([]byte(asString), &m)
 	if d.Id == "tesla" {
-		m["location"] = "34.3,-118.34"
+		v := map[string]any{}
+		v["location"] = "34.3,-118.34"
+		m["values"] = v
+		m["commands"] = []string{"self_drive_to"}
 	} else if d.Id == "nest" {
-		m["fahrenheit"] = 93
+		v := map[string]any{}
+		v["fahrenheit"] = 93
+		m["values"] = v
+		m["commands"] = []string{"set_temperature"}
 	} else if d.Id == "ring" {
-		m["front_door"] = "https://i.imgur.com/GX6D5hj.png"
+		v := map[string]any{}
+		v["front_door"] = "https://i.imgur.com/GX6D5hj.png"
+		m["values"] = v
+		m["commands"] = []string{"take_photo", "record_audio"}
 	} else if d.Id == "fridge" {
-		m["eggs"] = 2
+		v := map[string]any{}
+		v["eggs"] = 2
+		v["milk_gallons"] = 1.5
+		m["values"] = v
+		m["commands"] = []string{"set_temperature", "list_items"}
 	} else if d.Id == "scale" {
-		m["lbs"] = 0
+		v := map[string]any{}
+		m["bob_lbs"] = 190
+		m["sue_lbs"] = 130
+		m["values"] = v
+		m["commands"] = []string{"list_profiles", "add_profile"}
 	} else if d.Id == "smoke_detector" {
+		v := map[string]any{}
 		m["alarm"] = false
+		m["values"] = v
+		m["commands"] = []string{"sound_alarm"}
 	} else if d.Id == "smart_mirror" {
-		m["background"] = "https://i.imgur.com/fg3virE.png"
+		v := map[string]any{}
+		v["background"] = "https://i.imgur.com/fg3virE.png"
+		m["values"] = v
+		m["commands"] = []string{"set_text"}
 	} else if d.Id == "smart_lock" {
-		m["back_door"] = "locked"
-		m["front_door"] = "unlocked"
-		m["east_side_door"] = "ajar"
+		v := map[string]any{}
+		v["back_door"] = "locked"
+		v["front_door"] = "unlocked"
+		v["east_side_door"] = "ajar"
+		m["values"] = v
+		m["commands"] = []string{"panic_mode", "list_locks"}
 	} else if d.Id == "smart_coffee" {
 		val := map[string]any{}
 		val["brew_at"] = 1702758928
@@ -46,7 +72,13 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 		m["values"] = val
 		m["commands"] = []string{"list_flavors", "brew_now"}
 	} else if d.Id == "pet_feeder" {
-		m["meals_every"] = 86400
+		val := map[string]any{}
+		val["meals_every"] = 86400
+		val["grams"] = 90
+		val["flavor"] = "meow_mix"
+		val["photo"] = "https://i.imgur.com/M4UMA2Z.png"
+		m["values"] = val
+		m["commands"] = []string{"list_flavors", "feed_now", "take_photo"}
 	}
 	send["data"] = m
 
