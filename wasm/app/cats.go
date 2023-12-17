@@ -10,16 +10,17 @@ func queryForCategories() {
 	var m map[string]any
 	json.Unmarshal([]byte(jsonString), &m)
 
+	countMap := m["cat_map"].(map[string]any)
+	//total := m["total"]
 	div := Document.ByIdWrap("cats")
 	for _, cat := range m["cats"].([]any) {
 		catMap := map[string]any{}
 		catMap["name"] = cat
 		catMap["id"] = cat
-		catMap["count"] = 0
+		catMap["count"] = countMap[cat.(string)]
 		newHTML := Document.Render("cat", catMap)
-		newDiv := Document.Document.Call("createElement", "div")
-		newDiv.Set("innerHTML", newHTML)
-		div.Call("appendChild", newDiv)
+		current := div.Get("innerHTML")
+		div.Set("innerHTML", current+newHTML)
 	}
 
 	for _, input := range div.SelectAllByClass("cursor-pointer") {
