@@ -12,7 +12,7 @@ func queryForCategories() {
 	json.Unmarshal([]byte(jsonString), &m)
 
 	countMap := m["cat_map"].(map[string]any)
-	//total := m["total"]
+	Document.ById("total").Set("innerHTML", m["total"])
 	div := Document.ByIdWrap("cats")
 	cats := []string{}
 	for _, cat := range m["cats"].([]any) {
