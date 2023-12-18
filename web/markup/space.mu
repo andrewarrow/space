@@ -2,11 +2,13 @@ div p-0 h-full overflow-y-auto w-full flex justify-center items-center
   div p-3 text-2xl min-h-screen w-full md:w-1/2 
     div py-3 flex items-center justify-center
       div pl-1 text-sm
-        schedules
+        a href=# id=schedules
+          schedules
       div w-full text-center 
         homeOS
       div ml-auto pr-1 text-sm
-        messages 
+        a href=# id=messages
+          messages 
     div text-sm text-center
       span id=total
         0

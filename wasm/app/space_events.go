@@ -9,6 +9,8 @@ import (
 func RegisterSpaceEvents() {
 	go queryForCategories()
 	Global.Click("back", clickBack)
+	Global.Click("schedules", clickSchedules)
+	Global.Click("messages", clickMessages)
 }
 
 func showCreateTicket(this js.Value, params []js.Value) any {
