@@ -10,15 +10,23 @@
       div w-64
         bay
       div
-        input type=text id=bay placeholder=1 border-2 border-grey-400 p-1 rounded
+        input type=text id=bay placeholder=1 border-2 border-gray-200 p-1 rounded
     div flex
       div w-64
         grams
       div
-        input type=text id=grams placeholder=100 border-2 border-grey-400 p-1 rounded
+        input type=text id=grams placeholder=100 border-2 border-gray-200 p-1 rounded
     div flex
       div w-64
         execute
       div text-xs
-        input type=submit value=Now border rounded bg-blue-600 text-white py-2 px-2
+        div
+          select id=value border-2 border-gray-200
+            option value=9 
+              Now
+            option value=10
+              Every day 9AM
+            option value=10
+              Every other day 9AM
+        input type=submit value=Schedule border rounded bg-blue-600 text-white py-2 px-2
   {{ end }}
