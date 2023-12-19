@@ -29,5 +29,20 @@ func (d *DataDevice) Click(this js.Value, params []js.Value) any {
 	send["item"] = d.Name
 	newHTML := Document.Render("device_data_show", send)
 	mc.Set("innerHTML", newHTML)
+	Global.Click("api1", apiInvoke)
+	return nil
+}
+
+func apiInvoke(this js.Value, params []js.Value) any {
+	mc := Document.ByIdWrap("modal-content")
+	si := wasm.NewStackItem(mc.Get("innerHTML"))
+	mc.Set("innerHTML", "")
+	si.Callback = func() { Global.Click("api1", apiInvoke) }
+	Global.Stack = append(Global.Stack, si)
+
+	send := map[string]any{}
+	send["item"] = "api1"
+	newHTML := Document.Render("device_data_invoke", send)
+	mc.Set("innerHTML", newHTML)
 	return nil
 }
