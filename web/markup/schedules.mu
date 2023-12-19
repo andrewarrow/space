@@ -10,9 +10,9 @@
               9AM
             option value=10
               10AM
-      div flex space-x-3 bg-r items-center
+      div flex space-x-3 items-center
         div
-          input type=text id=name placeholder=name
+          input type=text id=name placeholder=name border-2 border-grey-400 p-1 rounded
         div text-xs
           input type=submit value=Add border rounded bg-blue-600 text-white py-2 px-2
     div id=schedule-list w-full
