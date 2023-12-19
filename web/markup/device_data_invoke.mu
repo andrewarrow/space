@@ -16,17 +16,18 @@
         grams
       div
         input type=text id=grams placeholder=100 border-2 border-gray-200 p-1 rounded
-    div flex
+    div flex items-center
       div w-64
         execute
       div text-xs
-        div
-          select id=value border-2 border-gray-200
+        div mr-3
+          select id=value border-2 border-gray-200 p-1 rounded
             option value=9 
               Now
             option value=10
               Every day 9AM
             option value=10
               Every other day 9AM
+      div
         input type=submit value=Schedule border rounded bg-blue-600 text-white py-2 px-2
   {{ end }}
