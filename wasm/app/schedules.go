@@ -13,22 +13,18 @@ func clickSchedules(this js.Value, params []js.Value) any {
 	mc.Set("innerHTML", "")
 	Document.ByIdWrap("modal").Show()
 
-	go func() {
-		items := queryForSchedules()
-		newHTML := Document.Render("schedules", items)
-		mc.Set("innerHTML", newHTML)
-		Global.Submit("add-schedule-form", addSchedule)
-		//SetScheduleClicks()
-	}()
+	go queryForSchedules()
 	return nil
 }
 
-func queryForSchedules() []any {
+func queryForSchedules() {
 	jsonString := network.DoGet("/schedules")
 	var m map[string]any
 	json.Unmarshal([]byte(jsonString), &m)
-	items := m["items"].([]any)
-	return items
+	newHTML := Document.Render("schedules", m["items"])
+	mc := Document.ById("modal-content")
+	mc.Set("innerHTML", newHTML)
+	Global.Submit("add-schedule-form", addSchedule)
 }
 
 func addSchedule(this js.Value, params []js.Value) any {
@@ -39,6 +35,7 @@ func addSchedule(this js.Value, params []js.Value) any {
 		m := w.MapOfInputs()
 		code := network.DoPost("/schedules", m)
 		fmt.Println(code)
+		queryForSchedules()
 	}()
 	return nil
 }
