@@ -1,6 +1,7 @@
 package app
 
 import (
+	"encoding/json"
 	"fmt"
 	"space/wasm/network"
 	"syscall/js"
@@ -16,16 +17,21 @@ func clickSchedules(this js.Value, params []js.Value) any {
 		items := queryForSchedules()
 		newHTML := Document.Render("schedules", items)
 		mc.Set("innerHTML", newHTML)
+		Global.Submit("add-schedule-form", addSchedule)
 		//SetScheduleClicks()
 	}()
 	return nil
 }
 
 func queryForSchedules() []any {
-	return []any{"test"}
+	jsonString := network.DoGet("/schedules")
+	var m map[string]any
+	json.Unmarshal([]byte(jsonString), &m)
+	items := m["items"].([]any)
+	return items
 }
 
-func createSchedule(this js.Value, params []js.Value) any {
+func addSchedule(this js.Value, params []js.Value) any {
 	params[0].Call("preventDefault")
 	w := Document.ByIdWrapped("add-schedule-form")
 

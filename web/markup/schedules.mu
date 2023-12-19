@@ -17,6 +17,7 @@
           input type=submit value=Add border rounded bg-blue-600 text-white py-2 px-2
     {{ range $i, $item := . }}
       div
-        {{ $item }}
+        {{ $name := index $item "name" }}
+        {{ $name }}
     {{ end }}
   {{ end }}
