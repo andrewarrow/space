@@ -49,16 +49,16 @@ func DoPatch(urlString string, payload any) int {
 	return code
 }
 
-func DoPost(urlString string, payload any) int {
+func DoPost(urlString string, payload any) (string, int) {
 	asBytes, _ := json.Marshal(payload)
 	body := bytes.NewBuffer(asBytes)
 	request, err := http.NewRequest("POST", urlString, body)
 	if err != nil {
-		return 500
+		return "", 500
 	}
 
-	_, code := DoHttpRead(request)
-	return code
+	s, code := DoHttpRead(request)
+	return s, code
 }
 
 func DoDelete(urlString string) int {

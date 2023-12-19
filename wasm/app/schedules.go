@@ -2,7 +2,6 @@ package app
 
 import (
 	"encoding/json"
-	"fmt"
 	"space/wasm/network"
 	"syscall/js"
 )
@@ -38,9 +37,8 @@ func addSchedule(this js.Value, params []js.Value) any {
 
 	go func() {
 		m := w.MapOfInputs()
-		code := network.DoPost("/schedules", m)
-		fmt.Println(code)
-		queryForSchedules()
+		jsonString, _ := network.DoPost("/schedules", m)
+		Document.AppendTo("schedule-list", jsonString, "schedule")
 	}()
 	return nil
 }

@@ -36,7 +36,7 @@ func loginForm(this js.Value, p []js.Value) any {
 	form := Document.ByIdWrapped("login-form")
 
 	go func() {
-		code := network.DoPost("/login", form.MapOfInputs())
+		_, code := network.DoPost("/login", form.MapOfInputs())
 		if code == 200 {
 			Global.Location.Set("href", "/space")
 			return
@@ -55,7 +55,7 @@ func registerForm(this js.Value, p []js.Value) any {
 	form := Document.ByIdWrapped("register-form")
 
 	go func() {
-		code := network.DoPost("/register", form.MapOfInputs())
+		_, code := network.DoPost("/register", form.MapOfInputs())
 		if code == 200 {
 			Global.Location.Set("href", "/space")
 			return

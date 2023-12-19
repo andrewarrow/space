@@ -16,7 +16,7 @@ func createTicket(this js.Value, params []js.Value) any {
 
 	go func() {
 		m := w.MapOfInputs()
-		code := network.DoPost("/tickets", m)
+		_, code := network.DoPost("/tickets", m)
 		fmt.Println(code)
 	}()
 	return nil
