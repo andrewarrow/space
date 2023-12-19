@@ -76,6 +76,28 @@
       ]
     },
     {
+      "name": "schedule",
+      "fields": [
+        {
+          "name": "name",
+          "flavor": "name"
+        },
+        {
+          "name": "flavor",
+          "flavor": "name"
+        },
+        {
+          "name": "value",
+          "flavor": "int"
+        },
+        {
+          "name": "user_id",
+          "flavor": "int",
+          "index": "yes"
+        }
+      ]
+    },
+    {
       "name": "device",
       "fields": [
         {

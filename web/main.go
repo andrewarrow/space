@@ -44,6 +44,7 @@ func main() {
 		r.Paths["login"] = app.Login
 		r.Paths["register"] = app.Register
 		r.Paths["tickets"] = app.Ticket
+		r.Paths["schedules"] = app.Schedules
 		r.Paths["devices"] = app.Devices
 		r.Paths["cats"] = app.Cats
 		r.Paths["markup"] = app.Markup
