@@ -15,8 +15,6 @@
           input type=text id=name placeholder=name
         div text-xs
           input type=submit value=Add border rounded bg-blue-600 text-white py-2 px-2
-    div id=schedule-list
-      {{ range $i, $item := . }}
-        {{ template "schedule" $item }}
-      {{ end }}
+    div id=schedule-list w-full
+      {{ . }}
   {{ end }}

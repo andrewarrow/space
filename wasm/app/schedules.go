@@ -3,7 +3,10 @@ package app
 import (
 	"encoding/json"
 	"space/wasm/network"
+	"strings"
 	"syscall/js"
+
+	"github.com/andrewarrow/feedback/wasm"
 )
 
 func clickSchedules(this js.Value, params []js.Value) any {
@@ -20,7 +23,12 @@ func queryForSchedules() {
 	jsonString := network.DoGet("/schedules")
 	var m map[string]any
 	json.Unmarshal([]byte(jsonString), &m)
-	newHTML := Document.Render("schedules", m["items"])
+	items := m["items"].([]any)
+	buffer := []string{}
+	for _, thing := range items {
+		buffer = append(buffer, wasm.Render("schedule", thing))
+	}
+	newHTML := Document.Render("schedules", strings.Join(buffer, ""))
 	mc := Document.ById("modal-content")
 	mc.Set("innerHTML", newHTML)
 	Global.Submit("add-schedule-form", addSchedule)
