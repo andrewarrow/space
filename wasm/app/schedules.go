@@ -57,5 +57,8 @@ func NewSchedule(id string) *Schedule {
 
 func (d *Schedule) doDelete(this js.Value, params []js.Value) any {
 	Document.ByIdWrap("w" + d.Id).Hide()
+	go func() {
+		network.DoDelete("/schedules/" + d.Id)
+	}()
 	return nil
 }
