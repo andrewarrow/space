@@ -28,6 +28,8 @@
               Every day 9AM
             option value=10
               Every other day 9AM
+            option value=10
+              Andrew's iPhone Close
       div
         input type=submit value=Schedule border rounded bg-blue-600 text-white py-2 px-2
   {{ end }}
