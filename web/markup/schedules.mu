@@ -16,8 +16,12 @@
         div text-xs
           input type=submit value=Add border rounded bg-blue-600 text-white py-2 px-2
     {{ range $i, $item := . }}
-      div
-        {{ $name := index $item "name" }}
-        {{ $name }}
+      {{ $guid := index $item "guid" }}
+      {{ $name := index $item "name" }}
+      div flex w-full id=g{{$guid}}
+        div w-full
+          {{ $name }}
+        div mx-auto mr-9
+          x
     {{ end }}
   {{ end }}

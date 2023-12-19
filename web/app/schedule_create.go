@@ -12,3 +12,7 @@ func createSchedule(c *router.Context) {
 	row := c.One("schedule", "where guid=$1", guid)
 	c.SendContentAsJson(row, 200)
 }
+func deleteSchedule(c *router.Context, guid string) {
+	c.FreeFormUpdate("delete from schedules where guid=$1", guid)
+	c.SendContentAsJson("", 200)
+}

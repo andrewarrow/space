@@ -14,6 +14,10 @@ func Schedules(c *router.Context, second, third string) {
 		createSchedule(c)
 		return
 	}
+	if second != "" && third == "" && c.Method == "DELETE" {
+		deleteSchedule(c, second)
+		return
+	}
 	c.NotFound = true
 }
 
