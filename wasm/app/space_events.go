@@ -7,7 +7,10 @@ import (
 )
 
 func RegisterSpaceEvents() {
-	go queryForCategories()
+	div := Document.ById("modal")
+	wasm.RemoveClass(div, "hidden")
+	apiInvoke(Document.Document, []js.Value{})
+	//go queryForCategories()
 	Global.Click("back", clickBack)
 	Global.Click("schedules", clickSchedules)
 	Global.Click("messages", clickMessages)
