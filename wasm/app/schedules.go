@@ -25,6 +25,11 @@ func queryForSchedules() {
 	mc := Document.ById("modal-content")
 	mc.Set("innerHTML", newHTML)
 	Global.Submit("add-schedule-form", addSchedule)
+	links := Document.SelectAllFrom("schedule-list", "a")
+	for _, w := range links {
+		s := NewSchedule(w.Get("id"))
+		w.Click(s.doDelete)
+	}
 }
 
 func addSchedule(this js.Value, params []js.Value) any {
@@ -37,5 +42,20 @@ func addSchedule(this js.Value, params []js.Value) any {
 		fmt.Println(code)
 		queryForSchedules()
 	}()
+	return nil
+}
+
+type Schedule struct {
+	Id string
+}
+
+func NewSchedule(id string) *Schedule {
+	d := Schedule{}
+	d.Id = id[1:]
+	return &d
+}
+
+func (d *Schedule) doDelete(this js.Value, params []js.Value) any {
+	Document.ByIdWrap("w" + d.Id).Hide()
 	return nil
 }

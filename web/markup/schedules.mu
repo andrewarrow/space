@@ -18,10 +18,11 @@
     {{ range $i, $item := . }}
       {{ $guid := index $item "guid" }}
       {{ $name := index $item "name" }}
-      div flex w-full id=g{{$guid}}
+      div flex w-full id=w{{$guid}}
         div w-full
           {{ $name }}
         div mx-auto mr-9
-          x
+          a href=# id=x{{$guid}}
+            X
     {{ end }}
   {{ end }}
