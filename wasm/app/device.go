@@ -35,6 +35,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	mc := Document.ByIdWrap("modal-content")
 	mc.Set("innerHTML", "")
 	Document.ById("title").Set("innerHTML", d.Name)
-	mc.Show()
+	modal := Document.ByIdWrap("modal")
+	modal.Show()
 	return nil
 }
