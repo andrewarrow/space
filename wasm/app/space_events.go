@@ -1,7 +1,6 @@
 package app
 
 import (
-	"fmt"
 	"syscall/js"
 
 	"github.com/andrewarrow/feedback/wasm"
@@ -20,7 +19,10 @@ func RegisterSpaceEvents() {
 func handleQueryForDevices() {
 	items := queryForDevices()
 	div := Document.ByIdWrap("devices")
-	div.Set("innerHTML", fmt.Sprintf("%s", items))
+	for _, device := range items {
+		newDiv := Document.RenderToNewDiv("device", device)
+		div.AppendChild(newDiv)
+	}
 }
 
 func clickBack(this js.Value, params []js.Value) any {
