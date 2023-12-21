@@ -1,8 +1,9 @@
 package app
 
 import (
-	"fmt"
 	"syscall/js"
+
+	"github.com/andrewarrow/feedback/wasm"
 )
 
 type Device struct {
@@ -39,7 +40,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 
 	go func() {
 		items := queryForDeviceFunctions(d.Guid)
-		mc.Set("innerHTML", fmt.Sprintf("%v", items))
+		mc.Set("innerHTML", wasm.Render("device_show", items))
 	}()
 	modal := Document.ByIdWrap("modal")
 	modal.Show()
