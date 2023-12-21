@@ -20,7 +20,7 @@ func (d *Cat) Click(this js.Value, params []js.Value) any {
 	Document.ByIdWrap("modal").Show()
 
 	go func() {
-		items := queryForDevices(d.Id)
+		items := queryForDevices()
 		newHTML := Document.Render("cat_show", items)
 		mc.Set("innerHTML", newHTML)
 		SetDeviceClicks()
