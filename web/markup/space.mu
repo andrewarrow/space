@@ -16,12 +16,12 @@ div p-0 w-full flex justify-center items-center
         devices
     div id=devices space-y-3 w-full flex flex-col justify-center items-center
       &nbsp;
-  div fixed top-0 left-1/2 transform -translate-x-1/2 h-full hidden id=modal w-full md:w-1/2 overflow-y-auto bg-red-900 rounded
-    div flex justify-left items-center p-6 
+  div fixed top-0 left-1/2 transform -translate-x-1/2 h-full hidden id=modal w-full md:w-1/2 overflow-y-auto bg-white rounded
+    div flex justify-left items-center p-6 bg-red-900
       div 
         a href=# id=back
           [BACK]
       div text-center w-full id=title
         Title is longer
-    div id=modal-content p-3 h-full bg-white
+    div id=modal-content p-3 h-full 
       modal
