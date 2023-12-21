@@ -25,3 +25,7 @@ insert into devices (name, cat, guid) values ('2022 MacBook Air', 'other', '0403
 insert into devices (name, cat, guid) values ('2020 MacBook Pro', 'other', '0503');
 insert into devices (name, cat, guid) values ('2021 iMac', 'other', '0603');
 insert into devices (name, cat, guid) values ('Rouge Bad Guy Device', 'other', '0703');
+
+insert into functions (device_id, function) values (36, 'release_food(bay,grams)');
+insert into functions (device_id, function) values (36, 'play_audio(file)');
+insert into functions (device_id, function) values (36, 'take_photo');

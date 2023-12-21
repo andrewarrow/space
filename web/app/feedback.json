@@ -115,7 +115,7 @@
       ]
     },
     {
-      "name": "api",
+      "name": "function",
       "fields": [
         {
           "name": "device_id",

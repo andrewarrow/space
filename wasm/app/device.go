@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"syscall/js"
 )
 
@@ -35,6 +36,8 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 	mc := Document.ByIdWrap("modal-content")
 	mc.Set("innerHTML", "")
 	Document.ById("title").Set("innerHTML", d.Name)
+	items := queryForDeviceFunctions(d.Guid)
+	mc.Set("innerHTML", fmt.Sprintf("%v", items))
 	modal := Document.ByIdWrap("modal")
 	modal.Show()
 	return nil
