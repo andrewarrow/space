@@ -129,6 +129,20 @@
       ]
     },
     {
+      "name": "payload",
+      "fields": [
+        {
+          "name": "device_id",
+          "flavor": "int",
+          "index": "yes"
+        },
+        {
+          "name": "payload",
+          "flavor": "json"
+        }
+      ]
+    },
+    {
       "name": "ticket",
       "fields": [
         {

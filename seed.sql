@@ -29,3 +29,5 @@ insert into devices (name, cat, guid) values ('Rouge Bad Guy Device', 'other', '
 insert into functions (device_id, function) values (36, 'release_food(bay,grams)');
 insert into functions (device_id, function) values (36, 'play_audio(file)');
 insert into functions (device_id, function) values (36, 'take_photo');
+
+insert into payloads (device_id, payload) values (36, '{"bays": [ {"id": "BAY_01", "sku": "MEOW_MIX_1010", "flavor": "Chicken & Yumminess", "grams": 2000}, {"id": "BAY_02", "sku": "MEOW_MIX_1020", "flavor": "Fresh Sardines", "grams": 1900} ] }');

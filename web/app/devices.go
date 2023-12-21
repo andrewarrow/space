@@ -14,6 +14,10 @@ func Devices(c *router.Context, second, third string) {
 		devicesFunctions(c, third)
 		return
 	}
+	if second == "payloads" && third != "" && c.Method == "GET" {
+		devicesPayloads(c, third)
+		return
+	}
 	if second != "" && third == "" && c.Method == "GET" {
 		devicesByCat(c, second)
 		return
@@ -32,6 +36,10 @@ func devicesIndex(c *router.Context) {
 func devicesFunctions(c *router.Context, guid string) {
 	device := c.One("device", "where guid=$1", guid)
 	c.TableJsonParams("function", "where device_id=$1", device["id"])
+}
+func devicesPayloads(c *router.Context, guid string) {
+	device := c.One("device", "where guid=$1", guid)
+	c.TableJsonParams("payload", "where device_id=$1", device["id"])
 }
 func devicesByCat(c *router.Context, cat string) {
 	send := map[string]any{}
