@@ -42,7 +42,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 		items := queryForDeviceFunctions(d.Guid)
 		mc.Set("innerHTML", wasm.Render("device_show", items))
 		items = queryForDevicePayloads(d.Guid)
-		Document.RenderTo("payloads", "payloads", items)
+		Document.RenderToId("payloads", "payloads", items)
 	}()
 	modal := Document.ByIdWrap("modal")
 	modal.Show()

@@ -1,3 +1,7 @@
 {{ define "payloads" }}
-  hey
+  {{ range $i, $item := . }}
+    div 
+      {{ $p := index $item "payload" }}
+      {{ $p }}
+  {{ end }}
   {{ end }}
