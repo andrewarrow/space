@@ -22,7 +22,7 @@ func (d *DataDevice) Click(this js.Value, params []js.Value) any {
 	mc := Document.ByIdWrap("modal-content")
 	si := wasm.NewStackItem(mc.Get("innerHTML"))
 	mc.Set("innerHTML", "")
-	si.Callback = SetDeviceClicks
+	//si.Callback = SetDeviceClicks
 	Global.Stack = append(Global.Stack, si)
 
 	send := map[string]any{}

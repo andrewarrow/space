@@ -22,6 +22,9 @@ func handleQueryForDevices() {
 	for _, device := range items {
 		newDiv := Document.RenderToNewDiv("device", device)
 		div.AppendChild(newDiv)
+		device := NewDevice(device.(map[string]any))
+		w := wasm.NewWrapper(newDiv)
+		w.Click(device.Click)
 	}
 }
 

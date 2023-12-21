@@ -1,6 +1,6 @@
 {{ define "device" }}
-  {{ $id := index . "id" }}
+  {{ $guid := index . "guid" }}
   {{ $name := index . "name" }}
-  div id={{$name}} cursor-pointer border-2 border-black w-full md:w-1/2 text-center
+  div id=d{{$guid}} cursor-pointer border-2 border-black w-full md:w-1/2 text-center
     {{ $name }}
   {{ end }}

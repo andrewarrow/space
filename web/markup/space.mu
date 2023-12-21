@@ -21,7 +21,7 @@ div p-0 w-full flex justify-center items-center
       div 
         a href=# id=back
           [BACK]
-      div text-center w-full
+      div text-center w-full id=title
         Title is longer
     div id=modal-content p-3 h-full bg-white
       modal

@@ -23,7 +23,7 @@ func (d *Cat) Click(this js.Value, params []js.Value) any {
 		items := queryForDevices()
 		newHTML := Document.Render("cat_show", items)
 		mc.Set("innerHTML", newHTML)
-		SetDeviceClicks()
+		//SetDeviceClicks()
 	}()
 	return nil
 }
