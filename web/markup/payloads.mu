@@ -2,6 +2,6 @@
   {{ range $i, $item := . }}
     div 
       {{ $p := index $item "payload" }}
-      {{ $p }}
+      {{ jq $p }}
   {{ end }}
   {{ end }}

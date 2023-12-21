@@ -138,7 +138,7 @@
         },
         {
           "name": "payload",
-          "flavor": "json"
+          "flavor": "text"
         }
       ]
     },
