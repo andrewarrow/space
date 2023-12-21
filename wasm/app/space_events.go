@@ -31,7 +31,7 @@ func handleQueryForDevices() {
 func clickBack(this js.Value, params []js.Value) any {
 	params[0].Call("preventDefault")
 	if len(Global.Stack) == 0 {
-		go queryForCategories()
+		//go queryForCategories()
 		div := Document.ById("modal")
 		wasm.AddClass(div, "hidden")
 	} else {
