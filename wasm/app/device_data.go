@@ -7,29 +7,20 @@ import (
 )
 
 type DataDevice struct {
-	Id   string
-	Name string
+	Id string
 }
 
-func NewDataDevice(id, name string) *DataDevice {
+func NewDataDevice(id string) *DataDevice {
 	d := DataDevice{}
 	d.Id = id[1:]
-	d.Name = name
 	return &d
 }
 
 func (d *DataDevice) Click(this js.Value, params []js.Value) any {
-	mc := Document.ByIdWrap("modal-content")
-	si := wasm.NewStackItem(mc.Get("innerHTML"))
-	mc.Set("innerHTML", "")
-	//si.Callback = SetDeviceClicks
-	Global.Stack = append(Global.Stack, si)
+	mc := Document.ByIdWrap("d" + d.Id)
+	current := mc.Get("innerHTML")
+	mc.Set("innerHTML", current+"<p>hi</p>")
 
-	send := map[string]any{}
-	send["item"] = d.Name
-	newHTML := Document.Render("device_data_show", send)
-	mc.Set("innerHTML", newHTML)
-	Global.Click("api1", apiInvoke)
 	return nil
 }
 
