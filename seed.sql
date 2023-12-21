@@ -30,5 +30,12 @@ insert into functions (device_id, function) values (36, 'release_food(bay,grams)
 insert into functions (device_id, function) values (36, 'play_audio(file)');
 insert into functions (device_id, function) values (36, 'take_photo');
 
+insert into functions (device_id, function) values (31, 'take_photo');
+insert into functions (device_id, function) values (31, 'play_audio(file)');
+insert into functions (device_id, function) values (31, 'set_temperature(celsius)');
+insert into functions (device_id, function) values (31, 'set_temperature(fahrenheit)');
+
 insert into payloads (device_id, payload) values (36, '{"bays": [ {"id": "BAY_01", "sku": "MEOW_MIX_1010", "flavor": "Chicken and Yumminess", "grams": 2000}, {"id": "BAY_02", "sku": "MEOW_MIX_1020", "flavor": "Fresh Sardines", "grams": 1900} ] }');
 insert into payloads (device_id, payload) values (36, '{"photo": "https://i.imgur.com/M4UMA2Z.png"}'); 
+insert into payloads (device_id, payload) values (31, '{ "fridgeId": "SFR123456", "model": "SmartFreeze 9000", "temperature": 2.5, "humidity": 45, "status": "operational", "lastUpdate": "2023-12-16T08:30:00Z", "inventory": [ { "item": "Milk", "quantity": 2, "expiryDate": "2023-12-20" }, { "item": "Eggs", "quantity": 1, "expiryDate": "2023-12-18" }, { "item": "Yogurt", "quantity": 3, "expiryDate": "2023-12-22" }, { "item": "Cheese", "quantity": 1, "expiryDate": "2023-12-25" }, { "item": "Vegetables", "quantity": 5, "expiryDate": null } ], "energyConsumption": { "current": 120, "average": 100, "unit": "Watt-hours" }, "alerts": [ { "type": "temperature", "message": "Temperature is higher than usual. Check settings." }, { "type": "inventory", "message": "Low quantity of eggs. Consider restocking." } ], "settings": { "temperatureUnit": "Celsius", "humidityAlertThreshold": 50 } }');
+insert into payloads (device_id, payload) values (31, '{"photo": "https://i.imgur.com/No5lsDm.png"}'); 
