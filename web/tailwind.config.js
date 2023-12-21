@@ -5,6 +5,11 @@ module.exports = {
     extend: {
       colors: {
         'lime': '#8FBC8F',
+        'squeeze': '#5423e7',
+      },
+      fontFamily: {
+        poppins: ['Poppins'],
+        montserrat: ['Montserrat'],
       },
     },
   },
