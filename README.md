@@ -1,5 +1,9 @@
 # space
 
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+UPDATE functions SET guid = uuid_generate_v4();
+
  [ search ] 
 
  Device 1      Device 7
