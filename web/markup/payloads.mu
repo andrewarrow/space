@@ -1,6 +1,6 @@
 {{ define "payloads" }}
   {{ range $i, $item := . }}
-    div 
+    div font-mono text-xs 
       {{ $p := index $item "payload" }}
       {{ jq $p }}
   {{ end }}
