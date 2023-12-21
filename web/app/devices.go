@@ -6,6 +6,10 @@ func Devices(c *router.Context, second, third string) {
 	if router.NotLoggedIn(c) {
 		return
 	}
+	if second == "" && third == "" && c.Method == "GET" {
+		devicesIndex(c)
+		return
+	}
 	if second != "" && third == "" && c.Method == "GET" {
 		devicesByCat(c, second)
 		return
@@ -15,6 +19,10 @@ func Devices(c *router.Context, second, third string) {
 		return
 	}
 	c.NotFound = true
+}
+
+func devicesIndex(c *router.Context) {
+	c.TableJson("device")
 }
 
 func devicesByCat(c *router.Context, cat string) {
