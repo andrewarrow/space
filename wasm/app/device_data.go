@@ -1,16 +1,19 @@
 package app
 
 import (
+	"space/wasm/network"
 	"syscall/js"
 )
 
 type DataDevice struct {
-	Id string
+	Id   string
+	Name any
 }
 
-func NewDataDevice(id string) *DataDevice {
+func NewDataDevice(id string, name any) *DataDevice {
 	d := DataDevice{}
 	d.Id = id[1:]
+	d.Name = name
 	return &d
 }
 
@@ -22,13 +25,16 @@ func (d *DataDevice) Click(this js.Value, params []js.Value) any {
 		other.Hide()
 	}
 	h := Document.ByIdWrap("h" + d.Id)
-	Global.Submit("h"+d.Id, apiInvoke)
+	Global.Submit("h"+d.Id, d.apiInvoke)
 	h.Show()
 	return nil
 }
 
-func apiInvoke(this js.Value, p []js.Value) any {
+func (d *DataDevice) apiInvoke(this js.Value, p []js.Value) any {
 	p[0].Call("preventDefault")
 	Document.ByIdWrap("back").FireClick()
+
+	payload = map[string]any{"name": d.Name, "when": "now"}
+	go network.DoPost("/devices/schedule/"+d.Id, payload)
 	return nil
 }
