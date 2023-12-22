@@ -1,19 +1,20 @@
 package app
 
 import (
+	"fmt"
 	"space/wasm/network"
 	"syscall/js"
 )
 
 type DataDevice struct {
-	Id   string
-	Name any
+	Id     string
+	Device *Device
 }
 
-func NewDataDevice(id string, name any) *DataDevice {
+func NewDataDevice(id string, data *Device) *DataDevice {
 	d := DataDevice{}
 	d.Id = id[1:]
-	d.Name = name
+	d.Device = data
 	return &d
 }
 
@@ -34,7 +35,7 @@ func (d *DataDevice) apiInvoke(this js.Value, p []js.Value) any {
 	p[0].Call("preventDefault")
 	Document.ByIdWrap("back").FireClick()
 
-	payload := map[string]any{"name": d.Name, "when": "now"}
-	go network.DoPost("/devices/schedule/"+d.Id, payload)
+	payload := map[string]any{"name": d.Device.Name, "when": "now"}
+	go network.DoPost(fmt.Sprintf("/devices/schedule/%s", d.Device.Guid), payload)
 	return nil
 }
