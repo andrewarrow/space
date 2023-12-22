@@ -17,6 +17,12 @@ func NewDataDevice(id string) *DataDevice {
 }
 
 func (d *DataDevice) Click(this js.Value, params []js.Value) any {
+	buttons := Document.ByIdWrap("device")
+	all := buttons.SelectAll(".cursor-pointer")
+	for _, input := range all {
+		other := Document.ByIdWrap("h" + input.Id[1:])
+		other.Hide()
+	}
 	h := Document.ByIdWrap("h" + d.Id)
 	h.Show()
 	//current := mc.Get("innerHTML")

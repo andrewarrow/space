@@ -42,8 +42,9 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 		items := queryForDeviceFunctions(d.Guid)
 		mc.Set("innerHTML", wasm.Render("device_show", items))
 		buttons := Document.ByIdWrap("device")
-		for _, input := range buttons.SelectAll(".cursor-pointer") {
-			dataDevice := NewDataDevice(input.Id)
+		all := buttons.SelectAll(".cursor-pointer")
+		for _, input := range all {
+			dataDevice := NewDataDevice(input.Id, all)
 			input.Click(dataDevice.Click)
 		}
 		items = queryForDevicePayloads(d.Guid)
