@@ -67,7 +67,7 @@ func devicesPayloads(c *router.Context, guid string) {
 func deviceSchedule(c *router.Context, guid string) {
 	c.ReadJsonBodyIntoParams()
 	device := c.One("device", "where guid=$1", guid)
-	name = c.Params["name"].(string)
+	name := c.Params["name"].(string)
 	if name == "Pet Feeder" {
 		petJson := `{"photo": "https://i.imgur.com/M4UMA2Z.png"}`
 		makePayload(c, device["id"], petJson)

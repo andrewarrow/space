@@ -34,7 +34,7 @@ func (d *DataDevice) apiInvoke(this js.Value, p []js.Value) any {
 	p[0].Call("preventDefault")
 	Document.ByIdWrap("back").FireClick()
 
-	payload = map[string]any{"name": d.Name, "when": "now"}
+	payload := map[string]any{"name": d.Name, "when": "now"}
 	go network.DoPost("/devices/schedule/"+d.Id, payload)
 	return nil
 }
