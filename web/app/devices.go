@@ -72,7 +72,7 @@ func deviceSchedule(c *router.Context, guid string) {
 	if name == "Pet Feeder" {
 		jsonString = `{"photo": "https://i.imgur.com/M4UMA2Z.png"}`
 	} else if name == "Fridge" {
-		jsonString = `https://i.imgur.com/No5lsDm.png"}`
+		jsonString = `{"photo": "https://i.imgur.com/No5lsDm.png"}`
 	}
 	makePayload(c, device["id"], jsonString)
 	c.SendContentAsJson("", 200)
