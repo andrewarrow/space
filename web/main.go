@@ -32,6 +32,9 @@ func main() {
 
 	if arg == "render" {
 		router.RenderMarkup()
+	} else if arg == "seed" {
+		r := router.NewRouter("DATABASE_URL", embeddedFile)
+		app.Seed(r.ToContext())
 	} else if arg == "run" {
 		router.BuildTag = buildTag
 		router.EmbeddedTemplates = embeddedTemplates
