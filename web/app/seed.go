@@ -1,6 +1,10 @@
 package app
 
-import "github.com/andrewarrow/feedback/router"
+import (
+	"encoding/json"
+
+	"github.com/andrewarrow/feedback/router"
+)
 
 func Seed(c *router.Context) {
 	id := makeDevice(c, "Living Room TV")
@@ -66,7 +70,9 @@ func makeFunction(c *router.Context, id any, s string) any {
 func makePayload(c *router.Context, id any, s string) any {
 	c.Params = map[string]any{}
 
-	c.Params["payload"] = s
+	var m map[string]any
+	json.Unmarshal([]byte(s), &m)
+	c.Params["payload"] = m
 	c.Params["device_id"] = id
 	c.ValidateCreate("payload")
 	c.Insert("payload")
