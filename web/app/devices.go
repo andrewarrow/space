@@ -1,6 +1,11 @@
 package app
 
-import "github.com/andrewarrow/feedback/router"
+import (
+	"regexp"
+	"strings"
+
+	"github.com/andrewarrow/feedback/router"
+)
 
 func Devices(c *router.Context, second, third string) {
 	if router.NotLoggedIn(c) {
@@ -33,9 +38,23 @@ func devicesIndex(c *router.Context) {
 	c.TableJson("device")
 }
 
+var functionRegex = regexp.MustCompile(`\((.*?)\)`)
+
 func devicesFunctions(c *router.Context, guid string) {
 	device := c.One("device", "where guid=$1", guid)
-	c.TableJsonParams("function", "where device_id=$1", device["id"])
+	send := map[string]any{}
+	items := c.All("function", "where device_id=$1 order by id", "", device["id"])
+	for _, item := range items {
+		f := item["function"].(string)
+		match := functionRegex.FindStringSubmatch(f)
+		item["params"] = []any{}
+		if len(match) == 2 {
+			tokens := strings.Split(match[1], ",")
+			item["params"] = tokens
+		}
+	}
+	send["items"] = items
+	c.SendContentAsJson(send, 200)
 }
 func devicesPayloads(c *router.Context, guid string) {
 	device := c.One("device", "where guid=$1", guid)
@@ -54,59 +73,3 @@ func devicePatch(c *router.Context, id string) {
 	send := map[string]any{}
 	c.SendContentAsJson(send, 200)
 }
-
-var fridgeJson = `{
-  "fridgeId": "SFR123456",
-  "model": "SmartFreeze 9000",
-  "temperature": 2.5,
-  "humidity": 45,
-  "status": "operational",
-  "lastUpdate": "2023-12-16T08:30:00Z",
-  "inventory": [
-    {
-      "item": "Milk",
-      "quantity": 2,
-      "expiryDate": "2023-12-20"
-    },
-    {
-      "item": "Eggs",
-      "quantity": 1,
-      "expiryDate": "2023-12-18"
-    },
-    {
-      "item": "Yogurt",
-      "quantity": 3,
-      "expiryDate": "2023-12-22"
-    },
-    {
-      "item": "Cheese",
-      "quantity": 1,
-      "expiryDate": "2023-12-25"
-    },
-    {
-      "item": "Vegetables",
-      "quantity": 5,
-      "expiryDate": null
-    }
-  ],
-  "energyConsumption": {
-    "current": 120,
-    "average": 100,
-    "unit": "Watt-hours"
-  },
-  "alerts": [
-    {
-      "type": "temperature",
-      "message": "Temperature is higher than usual. Check settings."
-    },
-    {
-      "type": "inventory",
-      "message": "Low quantity of eggs. Consider restocking."
-    }
-  ],
-  "settings": {
-    "temperatureUnit": "Celsius",
-    "humidityAlertThreshold": 50
-  }
-}
-`

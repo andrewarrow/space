@@ -17,9 +17,10 @@ func NewDataDevice(id string) *DataDevice {
 }
 
 func (d *DataDevice) Click(this js.Value, params []js.Value) any {
-	mc := Document.ByIdWrap("d" + d.Id)
-	current := mc.Get("innerHTML")
-	mc.Set("innerHTML", current+"<p>hi</p>")
+	h := Document.ByIdWrap("h" + d.Id)
+	h.Show()
+	//current := mc.Get("innerHTML")
+	//mc.Set("innerHTML", current+"<p>hi</p>")
 
 	return nil
 }
