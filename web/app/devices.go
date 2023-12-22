@@ -23,6 +23,10 @@ func Devices(c *router.Context, second, third string) {
 		devicesPayloads(c, third)
 		return
 	}
+	if second == "schedule" && third != "" && c.Method == "POST" {
+		deviceSchedule(c, third)
+		return
+	}
 	if second != "" && third == "" && c.Method == "GET" {
 		devicesByCat(c, second)
 		return
@@ -59,6 +63,16 @@ func devicesFunctions(c *router.Context, guid string) {
 func devicesPayloads(c *router.Context, guid string) {
 	device := c.One("device", "where guid=$1", guid)
 	c.TableJsonParams("payload", "where device_id=$1", device["id"])
+}
+func deviceSchedule(c *router.Context, guid string) {
+	c.ReadJsonBodyIntoParams()
+	device := c.One("device", "where guid=$1", guid)
+	name = c.Params["name"].(string)
+	if name == "Pet Feeder" {
+		petJson := `{"photo": "https://i.imgur.com/M4UMA2Z.png"}`
+		makePayload(c, device["id"], petJson)
+	}
+	c.SendContentAsJson("", 200)
 }
 func devicesByCat(c *router.Context, cat string) {
 	send := map[string]any{}
