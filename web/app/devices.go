@@ -68,10 +68,13 @@ func deviceSchedule(c *router.Context, guid string) {
 	c.ReadJsonBodyIntoParams()
 	device := c.One("device", "where guid=$1", guid)
 	name := c.Params["name"].(string)
+	jsonString := ""
 	if name == "Pet Feeder" {
-		petJson := `{"photo": "https://i.imgur.com/M4UMA2Z.png"}`
-		makePayload(c, device["id"], petJson)
+		jsonString = `{"photo": "https://i.imgur.com/M4UMA2Z.png"}`
+	} else if name == "Fridge" {
+		jsonString = `https://i.imgur.com/No5lsDm.png"}`
 	}
+	makePayload(c, device["id"], jsonString)
 	c.SendContentAsJson("", 200)
 }
 func devicesByCat(c *router.Context, cat string) {
