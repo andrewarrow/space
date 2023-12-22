@@ -2,8 +2,6 @@ package app
 
 import (
 	"syscall/js"
-
-	"github.com/andrewarrow/feedback/wasm"
 )
 
 type DataDevice struct {
@@ -24,23 +22,13 @@ func (d *DataDevice) Click(this js.Value, params []js.Value) any {
 		other.Hide()
 	}
 	h := Document.ByIdWrap("h" + d.Id)
+	Global.Submit("h"+d.Id, apiInvoke)
 	h.Show()
-	//current := mc.Get("innerHTML")
-	//mc.Set("innerHTML", current+"<p>hi</p>")
-
 	return nil
 }
 
-func apiInvoke(this js.Value, params []js.Value) any {
-	mc := Document.ByIdWrap("modal-content")
-	si := wasm.NewStackItem(mc.Get("innerHTML"))
-	mc.Set("innerHTML", "")
-	si.Callback = func() { Global.Click("api1", apiInvoke) }
-	Global.Stack = append(Global.Stack, si)
-
-	send := map[string]any{}
-	send["item"] = "api1"
-	newHTML := Document.Render("device_data_invoke", send)
-	mc.Set("innerHTML", newHTML)
+func apiInvoke(this js.Value, p []js.Value) any {
+	p[0].Call("preventDefault")
+	Document.ByIdWrap("back").FireClick()
 	return nil
 }

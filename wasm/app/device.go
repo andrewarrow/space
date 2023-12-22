@@ -44,7 +44,7 @@ func (d *Device) Click(this js.Value, params []js.Value) any {
 		buttons := Document.ByIdWrap("device")
 		all := buttons.SelectAll(".cursor-pointer")
 		for _, input := range all {
-			dataDevice := NewDataDevice(input.Id, all)
+			dataDevice := NewDataDevice(input.Id)
 			input.Click(dataDevice.Click)
 		}
 		items = queryForDevicePayloads(d.Guid)
